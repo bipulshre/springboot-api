@@ -11,18 +11,15 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    //comment added
+
+    private final StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
     public List<Student> getStudents(){
-
-        return List.of(
-                new Student(
-                        1L,
-                        "ram",
-                        "ram@gmail.com",
-                        LocalDate.of(2000, Month.DECEMBER,22),
-                        22
-                )
-
-        );
+        return studentRepository.findAll();
     }
 }
